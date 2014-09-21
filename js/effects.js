@@ -1,4 +1,3 @@
-
 eSlides = document.getElementsByClassName('slide');
 slidesWrap = document.getElementsByClassName('slides_wrap')[0];
 var slideW =eSlides[0].offsetWidth + parseInt(getComputedStyle(eSlides[0]).marginRight);
