@@ -68,7 +68,11 @@ $('.catalog label').click(function(){
 	var word = $(this).text();
 	$.ajax({
 		type:'POST',
-		url:'catalog_category.php',
-		data: 'categoryName: word'
+		url:'../Catalog/category.php',
+		data: 'categoryName: word',
+		success: function(response){
+			var json=$.parseJSON(response);
+			alert(json[0]); 
+		}
 	})
 })
