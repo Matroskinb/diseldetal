@@ -13,7 +13,7 @@ $resultDetail = array();
 while($var = mysql_fetch_row($Details)) array_push($resultDetail, $var);
 
 $resultCategory = array();
-while($var = mysql_fetch_row($categorys)) array_push($resultCategory, $var);
+while($var = mysql_fetch_row($categorys)) array_push($resultCategory, $var[3]);
 
 $result=array();
 array_push($result, $resultCategory);

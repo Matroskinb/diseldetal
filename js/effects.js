@@ -71,8 +71,7 @@ $('.catalog label').click(function(){
 		data: {categoryName: word},
 		success: function(response){
 			var json=$.parseJSON(response);
-			console.log(json);
+			console.log(json[0]);
 		}
 	})
-	console.log(word);
 })
