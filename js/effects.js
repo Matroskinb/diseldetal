@@ -62,6 +62,7 @@ document.onkeydown = function(event){
 		right();
 	}
 }
+<<<<<<< HEAD
 hasLabels = ($('.catalog').is($('.first-row label')));
 if (hasLabels == true ){
 	console.log('zero')
@@ -80,10 +81,9 @@ if (hasLabels == true ){
 					console.log(json[0][i])
 					$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
 				}
-			}
+			})
 		})
-	})
-}
+	}
 
 $(document).ready(function(){
 	$.ajax({
@@ -98,5 +98,4 @@ $(document).ready(function(){
 			}
 		}
 	})
-	labels = document.getElementsByClassName('catalog')[0].getElementsByTagName('label');
 })
