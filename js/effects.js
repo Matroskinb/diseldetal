@@ -63,23 +63,7 @@ document.onkeydown = function(event){
 	}
 }
 
-labels.click(function(){
-	var word = $(this).text();
-	$.ajax({
-		type:'POST',
-		url:'\\Catalog\\Category.php',
-		data: {categoryName: word},
-		success: function(response){
-			$('.catalog .second-row li').remove();
-			var json=$.parseJSON(response);
-			var i=0;
-			for (i; i<json[0].length;i++){
-				console.log(json[0][i])
-				$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
-			}
-		}
-	})
-})
+
 
 
 $(document).ready(function(){
@@ -95,5 +79,25 @@ $(document).ready(function(){
 			}
 		}
 	})
-	labels = document.getElementsByClassName('catalog')[0].getElementsByTagName('label');
 })
+
+if ($('.catalog label') !== undefined){
+	$('.catalog label').live("click",function(){
+	var word = $(this).text();
+	$.ajax({
+		type:'POST',
+		url:'\\Catalog\\Category.php',
+		data: {categoryName: word},
+		success: function(response){
+			$('.catalog .second-row li').remove();
+			var json=$.parseJSON(response);
+			var i=0;
+			for (i; i<json[0].length;i++){
+				console.log(json[0][i])
+				$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
+				}
+			}
+		})
+	})
+}
+
