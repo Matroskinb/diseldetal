@@ -64,9 +64,34 @@ document.onkeydown = function(event){
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
+=======
+hasLabels = ($('.catalog').is($('.first-row label')));
+if ($('.catalog labels') != 'undefined' ){
+	console.log('zero')
+	$('.catalog label').live('click',function(){
+		var word = $(this).text();
+		console.log(word);
+		$.ajax({
+			type:'POST',
+			url:'\\Catalog\\Category.php',
+			data: {categoryName: word},
+			success: function(response){
+				$('.catalog .second-row li').remove();
+				var json=$.parseJSON(response);
+				var i=0;
+				for (i; i<json[0].length;i++){
+					console.log(json[0][i])
+					$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
+				}
+			}
+		})
+	})
+}
+>>>>>>> origin/master
 
 $(document).ready(function(){
 =======
@@ -87,6 +112,7 @@ labels.click(function(){
 			}
 		}
 	})
+<<<<<<< HEAD
 })
 
 
@@ -105,3 +131,6 @@ $(document).ready(function(){
 	})
 	labels = document.getElementsByClassName('catalog')[0].getElementsByTagName('label');
 })
+=======
+})
+>>>>>>> origin/master
