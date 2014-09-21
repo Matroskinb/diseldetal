@@ -70,14 +70,9 @@ $('.catalog label').click(function(){
 		url:'catalog_category.php',
 <<<<<<< HEAD
 		data: 'categoryName: word',
-		success: function(){
-			
-=======
-		data: 'categoryName: word'
-				success: function(response){
+		success: function(response){
 			var json=$.parseJSON(response);
-			alert(json[0]); 
->>>>>>> c2d9b591923d254d94b097be1559a23cae62d043
+			alert(json[0]);
 		}
 	})
 })
