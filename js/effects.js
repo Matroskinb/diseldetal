@@ -66,6 +66,7 @@ document.onkeydown = function(event){
 
 
 
+
 $(document).ready(function(){
 	$.ajax({
 		type:'POST',
