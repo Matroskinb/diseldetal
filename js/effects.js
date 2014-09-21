@@ -79,3 +79,19 @@ $('.catalog label').click(function(){
 		}
 	})
 })
+
+
+$(document).ready(function(){
+	$.ajax({
+		type:'POST',
+		url:'../Catalog/Category.php',
+		success: function(response){
+			var json=$.parseJSON(response);
+			var i=0;
+			for (i; i<json[0].length;i++){
+				console.log(json[0][i])
+				$('.catalog .first-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
+			}
+		}
+	})
+})
