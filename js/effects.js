@@ -62,32 +62,8 @@ document.onkeydown = function(event){
 		right();
 	}
 }
-hasLabels = ($('.catalog').is($('.first-row label')));
-if (hasLabels == true){
-	console.log('zero')
-	$('.catalog label').live('click',function(){
-		var word = $(this).text();
-		console.log(word);
-		$.ajax({
-			type:'POST',
-			url:'\\Catalog\\Category.php',
-			data: {categoryName: word},
-			success: function(response){
-				$('.catalog .second-row li').remove();
-				var json=$.parseJSON(response);
-				var i=0;
-				for (i; i<json[0].length;i++){
-					console.log(json[0][i])
-					$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
-				}
-			}
-		})
-	})
-};
 
-
-$(document).ready(function(){
-	$.ajax({
+$.ajax({
 		type:'POST',
 		url:'../Catalog/Category.php',
 		success: function(response){
@@ -99,5 +75,40 @@ $(document).ready(function(){
 			}
 		}
 	})
-})
+hasLabels = ($('.catalog').is($('.first-row label')));
+if (hasLabels == true){
+	console.log('zero')
+	
+};
 
+
+$(document).ready(function(){
+	$(document).on('click','.catalog label',function(){
+		var word = $(this).text();
+		console.log(word);
+		$.ajax({
+			type:'POST',
+			url:'\\Catalog\\Category.php',
+			data: {categoryName: word},
+			success: function(response){
+				var json=$.parseJSON(response);
+				console.log(json[0].length)
+				if (json[0].length != 0){
+					console.log('enter')
+					$('.catalog .second-row li').remove();
+					for (i=0; i<json[0].length;i++){
+						console.log(json[0][i])
+						$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
+					}
+				}
+				else{
+					console.log('kakashka')
+				}
+				for (i=0;i< json[1].length;i++){
+					$('.catalog_wrap ul').append('<li><div class="art">'+json[1][i][1]+'</div><div class="name">'+json[1][i][3]+'</div><div class="cost">'+json[1][i][4]+'</div><div class="col">Кол-во</div><input type="text"><button class="add_cart">В корзину</button></li>');
+				}
+			}
+
+		})
+	})
+})
