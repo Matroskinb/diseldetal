@@ -67,13 +67,12 @@ $('.catalog label').click(function(){
 	var word = $(this).text();
 	$.ajax({
 		type:'POST',
-		url:'catalog_category.php',
-		data: 'categoryName: word',
+		url:'\\Catalog\\Category.php',
+		data: {categoryName: word},
 		success: function(response){
 			var json=$.parseJSON(response);
-			json[0].forEach(function(entry)){
-				console.log(entry);
-			}
+			console.log(json);
 		}
 	})
+	console.log(word);
 })

@@ -8,7 +8,7 @@ if(!mysql_select_db('Dizel_detal',$db)) die('Cannot connect to datebase');
 $categoryName=$_POST['categoryName'];
 
 $categorys = mysql_query("SELECT * FROM `category` WHERE Parent='".$categoryName."'");
-$Details = mysql_query("SELECT * FROM `Details` where Parent='".$categoryName."'");
+$Details = mysql_query("SELECT * FROM `Details` WHERE Parent='".$categoryName."'");
 $resultDetail = array();
 while($var = mysql_fetch_row($Details)) array_push($resultDetail, $var);
 
