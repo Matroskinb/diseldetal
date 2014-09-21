@@ -83,7 +83,7 @@ if (hasLabels == true){
 			}
 		})
 	})
-}
+};
 
 
 $(document).ready(function(){
