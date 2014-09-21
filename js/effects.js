@@ -70,5 +70,9 @@ $('.catalog label').click(function(){
 		type:'POST',
 		url:'catalog_category.php',
 		data: 'categoryName: word'
+				success: function(response){
+			var json=$.parseJSON(response);
+			alert(json[0]); 
+		}
 	})
 })
