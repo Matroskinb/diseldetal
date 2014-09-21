@@ -1,4 +1,3 @@
-
 eSlides = document.getElementsByClassName('slide');
 slidesWrap = document.getElementsByClassName('slides_wrap')[0];
 var slideW =eSlides[0].offsetWidth + parseInt(getComputedStyle(eSlides[0]).marginRight);
@@ -69,6 +68,9 @@ $('.catalog label').click(function(){
 	$.ajax({
 		type:'POST',
 		url:'catalog_category.php',
-		data: 'categoryName: word'
+		data: 'categoryName: word',
+		success: function(){
+			
+		}
 	})
 })
