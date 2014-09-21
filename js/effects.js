@@ -63,7 +63,7 @@ document.onkeydown = function(event){
 	}
 }
 
-$('.catalog label').click(function(){
+labels.click(function(){
 	var word = $(this).text();
 	console.log(word);
 	$.ajax({
@@ -96,4 +96,5 @@ $(document).ready(function(){
 			}
 		}
 	})
+	labels = document.getElementsByClassName('catalog')[0].getElementsByTagName('label');
 })
