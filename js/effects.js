@@ -62,6 +62,7 @@ document.onkeydown = function(event){
 		right();
 	}
 }
+<<<<<<< HEAD
 hasLabels = ($('.catalog').is($('.first-row label')));
 if ($('.catalog labels') != 'undefined' ){
 	console.log('zero')
@@ -84,6 +85,12 @@ if ($('.catalog labels') != 'undefined' ){
 		})
 	})
 }
+=======
+
+
+
+
+>>>>>>> origin/master
 
 $(document).ready(function(){
 	$.ajax({
@@ -99,3 +106,24 @@ $(document).ready(function(){
 		}
 	})
 })
+
+if ($('.catalog label') !== undefined){
+	$('.catalog label').live("click",function(){
+	var word = $(this).text();
+	$.ajax({
+		type:'POST',
+		url:'\\Catalog\\Category.php',
+		data: {categoryName: word},
+		success: function(response){
+			$('.catalog .second-row li').remove();
+			var json=$.parseJSON(response);
+			var i=0;
+			for (i; i<json[0].length;i++){
+				console.log(json[0][i])
+				$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
+				}
+			}
+		})
+	})
+}
+
