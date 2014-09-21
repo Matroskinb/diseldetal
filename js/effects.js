@@ -64,22 +64,17 @@ document.onkeydown = function(event){
 }
 
 $.ajax({
-		type:'POST',
-		url:'../Catalog/Category.php',
-		success: function(response){
-			var json=$.parseJSON(response);
-			var i=0;
-			for (i; i<json[0].length;i++){
-				console.log(json[0][i])
-				$('.catalog .first-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
-			}
+	type:'POST',
+	url:'../Catalog/Category.php',
+	success: function(response){
+		var json=$.parseJSON(response);
+		var i=0;
+		for (i; i<json[0].length;i++){
+			console.log(json[0][i])
+			$('.catalog .first-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
 		}
-	})
-hasLabels = ($('.catalog').is($('.first-row label')));
-if (hasLabels == true){
-	console.log('zero')
-	
-};
+	}
+})
 
 
 $(document).ready(function(){
@@ -98,7 +93,7 @@ $(document).ready(function(){
 					$('.catalog .second-row li').remove();
 					for (i=0; i<json[0].length;i++){
 						console.log(json[0][i])
-						$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
+						$('.catalog .second-row ul').append('<li><input type="radio" name="second-row" id="pod-category'+i+'"><label for="pod-category'+i+'">'+json[0][i]+'</label></li>');
 					}
 				}
 				else{
