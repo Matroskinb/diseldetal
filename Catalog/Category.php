@@ -20,5 +20,4 @@ array_push($result, $resultCategory);
 array_push($result, $resultDetail);
 
 echo json_encode($result);
-
 ?>
