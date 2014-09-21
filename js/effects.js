@@ -63,7 +63,7 @@ document.onkeydown = function(event){
 	}
 }
 hasLabels = ($('.catalog').is($('.first-row label')));
-if (hasLabels == true ){
+if ($('.catalog labels') != 'undefined' ){
 	console.log('zero')
 	$('.catalog label').live('click',function(){
 		var word = $(this).text();
