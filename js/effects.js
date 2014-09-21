@@ -70,6 +70,7 @@ $('.catalog label').click(function(){
 		url:'\\Catalog\\Category.php',
 		data: {categoryName: word},
 		success: function(response){
+			$('.catalog .second-row li').remove();
 			var json=$.parseJSON(response);
 			var i=0;
 			for (i; i<json[0].length;i++){
