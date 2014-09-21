@@ -104,7 +104,7 @@ header .cart{
 	display: block;
 	cursor:pointer;
 	font-weight: 700;
-	padding: 3px 11px 2px 6px;
+	padding: 3px 11px 2px 1px;
 	border:none;
 	font-family: inherit;
 }
@@ -209,13 +209,15 @@ header:after{
 	color:#333;
 	font-weight: 400;
 	position: relative;
+	padding-bottom: 16px;
 }
 
 .catalog .first-row{
 	background:#d9e2ea;
 	font-size: 20px;
-	width: 214px;
 	text-align:left;
+	padding:16px 10px 0;
+	max-width:200px;
 }
 
 .catalog label{
@@ -232,10 +234,9 @@ header:after{
 
 .catalog > div{
 	overflow: auto;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	height:inherit;
 	padding: 16px 0 0 10px;
+	-moz-box-sizing: border-box;
+	height: inherit;
 }
 
 .catalog ul input[type=radio]{
@@ -245,7 +246,10 @@ header:after{
 .catalog .second-row{
 	background: #ebf0f5;
 	font-size: 20px;
-	width: 184px;
+	padding: 16px 10px 0;
+	-webkit-transition: all 300ms ease;
+	overflow: auto;
+	max-width: 190px;
 }
 
 .catalog .fird-row{
@@ -260,16 +264,18 @@ header:after{
 }
 
 .nav .art{
-	width: 94px;
+	width: 74px;
 	padding-left: 6px;
 }
 
 .nav .name{
-	width: 230px;
+	width: 427px;
 }
 
 .nav .cost{
-	width:60px;
+	min-width:60px;
+	float:right;
+	margin-right:128px;
 }
 
 .fird-row .nav > div{
@@ -282,12 +288,12 @@ header:after{
 }
 
 .catalog_wrap .art{
-	width: 94px;
+	width: 78px;
 	padding-left: 6px;
 }
 
 .catalog_wrap .name{
-	width: 230px;
+	max-width: 48%;
 }
 
 .catalog_wrap .cost{
@@ -302,6 +308,7 @@ header:after{
 .catalog_wrap input{
 	width:21px;
 	border:1px solid #929292;
+	margin-top:2px;
 }
 
 .catalog_wrap .add_cart{
@@ -326,6 +333,9 @@ header:after{
 
 .catalog_wrap ul li{
 	padding:2px 0 2px;
+	width:100%;
+	display:block;
+	position:relative;
 }
 
 h1{
@@ -493,4 +503,8 @@ footer .swag-web-logo{
 
 .catalog .fulscr:hover{
 	opacity: 0.3;
+}
+
+.catalog_wrap .content{
+	padding:0 11px 0 0;
 }

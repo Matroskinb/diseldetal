@@ -71,7 +71,7 @@ $.ajax({
 		var i=0;
 		for (i; i<json[0].length;i++){
 			console.log(json[0][i])
-			$('.catalog .first-row ul').append('<li><input type="radio" name="second-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
+			$('.catalog .first-row ul').append('<li><input type="radio" name="first-row" id="category'+i+'"><label for="category'+i+'">'+json[0][i]+'</label></li>');
 		}
 	}
 })
@@ -80,10 +80,9 @@ $.ajax({
 $(document).ready(function(){
 	$(document).on('click','.catalog label',function(){
 		var word = $(this).text();
-		console.log(word);
 		$.ajax({
 			type:'POST',
-			url:'\\Catalog\\Category.php',
+			url:'../Catalog/Category.php',
 			data: {categoryName: word},
 			success: function(response){
 				var json=$.parseJSON(response);
@@ -97,10 +96,10 @@ $(document).ready(function(){
 					}
 				}
 				else{
-					console.log('kakashka')
+					$('.catalog .catalog_wrap li').remove();
 				}
 				for (i=0;i< json[1].length;i++){
-					$('.catalog_wrap ul').append('<li><div class="art">'+json[1][i][1]+'</div><div class="name">'+json[1][i][3]+'</div><div class="cost">'+json[1][i][4]+'</div><div class="col">Кол-во</div><input type="text"><button class="add_cart">В корзину</button></li>');
+					$('.catalog_wrap ul').append('<li class="clear"><div class="art">'+json[1][i][1]+'</div><div class="name">'+json[1][i][3]+'</div><button class="add_cart right">В корзину</button><input type="text" class="right"><div class="col right">Кол-во</div><div class="cost right">'+json[1][i][4]+' Р.</div></li>');
 				}
 			}
 
