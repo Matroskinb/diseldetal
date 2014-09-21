@@ -68,7 +68,6 @@ $('.catalog label').click(function(){
 	$.ajax({
 		type:'POST',
 		url:'catalog_category.php',
-<<<<<<< HEAD
 		data: 'categoryName: word',
 		success: function(response){
 			var json=$.parseJSON(response);
