@@ -65,6 +65,7 @@ document.onkeydown = function(event){
 
 $('.catalog label').click(function(){
 	var word = $(this).text();
+	console.log(word);
 	$.ajax({
 		type:'POST',
 		url:'\\Catalog\\Category.php',
