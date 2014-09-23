@@ -1,3 +1,16 @@
+function doEps(){
+	if (document.body.offsetWidth <= 720){
+	eps = 2;
+	}
+	else{
+		eps = 3;
+	}
+};
+
+window.onresize = function(){
+	doEps();
+};
+
 eSlides = document.getElementsByClassName('slide');
 slidesWrap = document.getElementsByClassName('slides_wrap')[0];
 var slideW =eSlides[0].offsetWidth + parseInt(getComputedStyle(eSlides[0]).marginRight);
@@ -25,19 +38,19 @@ document.getElementById('slider').onclick = function(event){
 };
 
 function left(){
-	coordinate = coordinate + slideW*3;
-	if (coordinate >= slideW*3){
+	coordinate = coordinate + slideW*eps;
+	if (coordinate >= slideW*eps){
 		move = false;
-		coordinate = coordinate - slideW*3;
+		coordinate = coordinate - slideW*eps;
 	};
 	runslide();
 }
 
 function right(){
-	coordinate = coordinate - slideW*3;
+	coordinate = coordinate - slideW*eps;
 	if (Math.abs(coordinate) > (wrapW-slideW)){
 		move = false;
-		coordinate = coordinate + slideW*3;
+		coordinate = coordinate + slideW*eps;
 	};
 	runslide();
 }
@@ -78,6 +91,7 @@ $.ajax({
 
 
 $(document).ready(function(){
+	doEps();
 	$(document).on('click','.catalog label',function(){
 		var word = $(this).text();
 		$.ajax({

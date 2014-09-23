@@ -515,10 +515,84 @@ footer .swag-web-logo{
 @media screen and (max-width: 1090px){
 	header .content{
 		width: 960px;
+		padding:0 20px;
+	}
+
+	header .cart{
+		margin-right:35px;
 	}
 
 	header{
 		width: 960px;
 		margin:0 auto 0;
+	}
+}
+
+@media screen and (max-width: 740px){
+	header{
+		width: 720px;
+	}
+
+	header .content{
+		padding:0;
+		width: 720px;
+	}
+	header .content .logo{
+	width: 392px;
+	margin-bottom: 20px;
+	margin-left: 20%;
+	}
+
+	.wrap{
+		width: 720px;
+	}
+
+	.slider .slides{
+		width:450px;
+	}
+
+	header .content > div{
+		display: block;
+		margin:0 auto;
+	}
+
+	header .content > div.cart{
+		float:right;
+		margin-right:10%;
+		margin-bottom:10px;
+	}
+
+	header .content > div.inform{
+		width:250px;
+		float:left;
+		margin-left:10%;
+	}
+
+	.catalog{
+		width: 710px;
+	}
+
+	.how-we-work{
+		width: 700px;
+	}
+
+	footer{
+		width: 720px;
+	}
+
+	a.swag-web-logo{
+		display: none
+	}
+
+	.how-we-work > h1{
+		text-align: center;
+	}
+
+	.find-our > h1{
+		text-align: center;
+	}
+
+	footer .information{
+		margin-left:120px;
 	}
 }
