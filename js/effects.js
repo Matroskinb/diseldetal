@@ -7,7 +7,7 @@ document.getElementsByClassName('slides_wrap')[0].style.width = wrapW +'px';
 coordinate =-Math.floor(eSlides.length/2)*slideW + slideW;
 document.getElementsByClassName('slides_wrap')[0].style.transform = 'translate3d( '+coordinate+'px,0,0)';
 document.getElementsByClassName('slides_wrap')[0].style.webkitTransform = 'translate3d( '+coordinate+'px,0,0)';
-document.getElementsByClassName('slides_wrap')[0].style.transition = "transform 300ms ease";
+document.getElementsByClassName('slides_wrap')[0].style.transition = "transform 400ms ease";
 document.getElementsByClassName('slides_wrap')[0].style.transition = "-webkit-transform 300ms ease";
 document.getElementById('slider').onclick = function(event){
 	event = event || window.event;
@@ -97,6 +97,11 @@ $(document).ready(function(){
 				}
 				else{
 					$('.catalog .catalog_wrap li').remove();
+				}
+				if (document.getElementsByClassName('nav')[0].style.opacity == 0){
+					document.getElementsByClassName('nav')[0].style.opacity = "1";
+					document.getElementsByClassName('nav')[0].style.marginTop = "0px";
+					document.getElementsByClassName('catalog_wrap')[0].style.marginTop = "5px";
 				}
 				for (i=0;i< json[1].length;i++){
 					$('.catalog_wrap ul').append('<li class="clear"><div class="art">'+json[1][i][1]+'</div><div class="name">'+json[1][i][3]+'</div><button class="add_cart right">В корзину</button><input type="text" class="right"><div class="col right">Кол-во</div><div class="cost right">'+json[1][i][4]+' Р.</div></li>');
