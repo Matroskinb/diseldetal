@@ -73,19 +73,51 @@ $(document).ready(function(){
 		}
 		else{
 			for (i=0;i< cart.item.length;i++){
-					$('table.cart_items').append('<tr><td class="art">'+cart.item[i]+'</td><td class="name">'+cart.name[i]+'</td><td class="col">Колв-во'+cart.col[i]+'</td><td class="cost">'+Math.floor(cart.cost[i]*cart.col[i])+' р.</td><td><input type="checkbox" id="'+cart.item[i]+'"><label for="'+cart.item[i]+'"></label></td><td><button class="delete"></button></td>');
+					$('table.cart_items').append('<tr><td class="art">'+cart.item[i]+'</td><td class="name">'+cart.name[i]+'</td><td class="col">Кол-во:<input type="text" value="'+cart.col[i]+'" data-art="'+cart.item[i]+'" disabled></td><td class="cost" data-art="'+cart.item[i]+'">'+Math.floor(cart.cost[i]*cart.col[i])+' р.</td><td><input type="checkbox" id="'+cart.item[i]+'"><label class="confirmed" for="'+cart.item[i]+'"></label></td><td><button class="delete"></button></td>');
+					// $('table.cart_items tr td').ready(function(){
+					// 	cells = $('table.cart_items tr td')
+					// })
 				}
 			document.getElementById('cart_modal').style.display = "block";
 		};
 	}
+
+	$(document).on('click','table td label.confirmed',function(){
+		if ($('table label.editing').length == 0){
+			$(this).addClass('editing');
+			$(this).removeClass('confirmed');
+			for (i=0;i<=$('table .col input').length-1;i++){
+				if ($('table .col input')[i].getAttribute('data-art') == this.getAttribute('for')){
+					$('table .col input')[i].removeAttribute('disabled');
+				};
+			};
+		}
+		else{
+			alert("уже есть редактируемое поле")
+		}
+	});
+	$(document).on('click','table td label.editing',function(){
+		$(this).removeClass('editing');
+		$(this).addClass('confirmed');
+		for (i=0;i<$('table .col input').length;i++){
+			if ($('table .col input')[i].getAttribute('data-art') == this.getAttribute('for')){
+				$('table .col input')[i].setAttribute('disabled','');
+				cart.col[i] = $('table .col input')[i].value;
+				console.log($('table .cost')[i]);
+				$('table .cost')[i].innerText = Math.floor(cart.col[i]*cart.cost[i]) + 'р.';
+			}
+		}
+	})
 
 	$('.back-catalog').click(function(){
 		document.getElementById('cart_modal').style.display = "none";
 	})
 
 	$('.do-offer').click(function(){
-		document.getElementById('cart_modal').style.display = "none";
-		document.getElementById('do_offer_modal').style.display = "block";
+		if ($('label.editing').length==0){
+			document.getElementById('cart_modal').style.display = "none";
+			document.getElementById('do_offer_modal').style.display = "block";
+		}
 	})
 
 	$('.modal .back').click(function(){
@@ -95,6 +127,7 @@ $(document).ready(function(){
 	$(document).on('click','.add_cart',function(){
 		addCart(this.getAttribute('data-art'),this.getAttribute('data-name'),this.getAttribute('data-cost'),this.nextElementSibling.value);
 	});
+
 	$(document).on('click','.catalog label',function(){
 		var word = $(this).text();
 		$.ajax({
@@ -121,7 +154,7 @@ $(document).ready(function(){
 					document.getElementsByClassName('catalog_wrap')[0].style.marginTop = "5px";
 				}
 				for (i=0;i< json[1].length;i++){
-					$('.catalog_wrap ul').append('<li class="clear"><div class="art">'+json[1][i][1]+'</div><div class="name">'+json[1][i][3]+'</div><button class="add_cart right" data-art="'+json[1][i][1]+'"data-name="'+json[1][i][3]+'" data-cost="'+json[1][i][4]+'">В корзину</button><input type="text" class="right"><div class="col right">Кол-во</div><div class="cost right">'+json[1][i][4]+' Р.</div></li>');
+					$('.catalog_wrap ul').append('<li class="clear"><div class="art">'+json[1][i][1]+'</div><div class="name">'+json[1][i][3]+'</div><button class="add_cart right" data-art="'+json[1][i][1]+'"data-name="'+json[1][i][3]+'" data-cost="'+json[1][i][4]+'">В корзину</button><input type="text" class="right" value="1"><div class="col right">Кол-во</div><div class="cost right">'+json[1][i][4]+' Р.</div></li>');
 				}
 			}
 
