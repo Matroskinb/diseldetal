@@ -65,10 +65,10 @@ header .content > div{
 }
 
 header .inform{
-	font-weight: 700;
 	margin-top: 34px;
 	font-size: 20px;
 	margin-right: 57px;
+	font-weight: 700;
 }
 
 header .phone{
@@ -524,6 +524,11 @@ footer .swag-web-logo{
 	header{
 		width: 960px;
 		margin:0 auto 0;
+	}
+
+	header .content .inform{
+		margin-right: 28px;
+		font-weight: 500;
 	}
 }
 
