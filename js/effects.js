@@ -73,15 +73,24 @@ $(document).ready(function(){
 		}
 		else{
 			for (i=0;i< cart.item.length;i++){
-					$('table.cart_items').append('<tr><td class="art">'+cart.item[i]+'</td><td class="name">'+cart.name[i]+'</td><td class="col">Кол-во:<input type="text" value="'+cart.col[i]+'" data-art="'+cart.item[i]+'" disabled></td><td class="cost" data-art="'+cart.item[i]+'">'+Math.floor(cart.cost[i]*cart.col[i])+' р.</td><td><input type="checkbox" id="'+cart.item[i]+'"><label class="confirmed" for="'+cart.item[i]+'"></label></td><td><button class="delete"></button></td>');
-					// $('table.cart_items tr td').ready(function(){
-					// 	cells = $('table.cart_items tr td')
-					// })
+					$('table.cart_items').append('<tr><td class="art">'+cart.item[i]+'</td><td class="name">'+cart.name[i]+'</td><td class="col">Кол-во:<input type="text" value="'+cart.col[i]+'" data-art="'+cart.item[i]+'" disabled></td><td class="cost" data-art="'+cart.item[i]+'">'+Math.floor(cart.cost[i]*cart.col[i])+' р.</td><td><input type="checkbox" id="'+cart.item[i]+'"><label class="confirmed" for="'+cart.item[i]+'"></label></td><td><button class="delete" data-art="'+cart.item[i]+'"></button></td>');
 				}
 			document.getElementById('cart_modal').style.display = "block";
 		};
 	}
-
+	$(document).on('click','table .delete',function(){
+		var element = $(this).getAttribute('data-art');
+		$(this).parent().parent().remove();
+		for (i=0;i<cart.name.length;i++){
+			if (cart.item[i] == $(this)[0].getAttribute('data-art')){
+				cart.item.splice(i,1);
+				cart.name.splice(i,1);
+				cart.count.splice(i,1);
+				cart.col.splice(i,1);
+				fullCost();
+			}
+		}
+	})
 	$(document).on('click','table td label.confirmed',function(){
 		if ($('table label.editing').length == 0){
 			$(this).addClass('editing');
@@ -93,7 +102,7 @@ $(document).ready(function(){
 			};
 		}
 		else{
-			alert("уже есть редактируемое поле")
+			alert("уже есть редактируемое поле");
 		}
 	});
 	$(document).on('click','table td label.editing',function(){
@@ -169,7 +178,7 @@ function addCart(item,name,cost,col){
 	cart.cost[i] = cost;
 	cart.col[i] = col;
 	cart.i=i+1;
-	console.log(cart)
+	fullCost();
 }
 
 function left(){
@@ -198,4 +207,12 @@ function runslide(){
 	else{
 		console.log('need animation of error');
 	};
+}
+
+function fullCost(){
+	var sum = 0
+	for (i=0;i<cart.name.length;i++){
+	sum = sum + cart.col[i]*cart.cost[i];
+	}
+	$('.modal .result .cost')[0].innerText = Math.floor(sum) + ' руб';
 }
