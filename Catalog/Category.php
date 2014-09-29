@@ -1,9 +1,9 @@
 <?php
 
-$db=mysql_connect('localhost','DizelDetal','123321');
+$db=mysql_connect('localhost','u349367176_user','123321');
 
 if(!$db){die("Cant connect to phpMyAdmin");}
-if(!mysql_select_db('Dizel_detal',$db)) die('Cannot connect to datebase');
+if(!mysql_select_db('u349367176_dizel',$db)) die('Cannot connect to datebase');
 
 $categoryName=$_POST['categoryName'];
 
