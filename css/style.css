@@ -248,6 +248,7 @@ header:after,.modal-header:after{
 	padding: 16px 10px 0;
 	overflow: auto;
 	max-width: 190px;
+	transition: 300ms;
 }
 
 .catalog .fird-row{

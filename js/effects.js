@@ -3,6 +3,7 @@ slidesWrap = document.getElementsByClassName('slides_wrap')[0];
 var slideW =eSlides[0].offsetWidth + parseInt(getComputedStyle(eSlides[0]).marginRight);
 wrapW = eSlides.length*slideW;
 coordinate = 0;
+cartHasItems = '0';
 document.getElementsByClassName('slides_wrap')[0].style.width = wrapW +'px';
 coordinate =-Math.floor(eSlides.length/2)*slideW + slideW;
 document.getElementsByClassName('slides_wrap')[0].style.transform = 'translate3d( '+coordinate+'px,0,0)';
@@ -72,21 +73,22 @@ $(document).ready(function(){
 			alert('Ваша корзина пуста')
 		}
 		else{
-			for (i=0;i< cart.item.length;i++){
+			for (i=0;i<cart.item.length;i++){
 					$('table.cart_items').append('<tr><td class="art">'+cart.item[i]+'</td><td class="name">'+cart.name[i]+'</td><td class="col">Кол-во:<input type="text" value="'+cart.col[i]+'" data-art="'+cart.item[i]+'" disabled></td><td class="cost" data-art="'+cart.item[i]+'">'+Math.floor(cart.cost[i]*cart.col[i])+' р.</td><td><input type="checkbox" id="'+cart.item[i]+'"><label class="confirmed" for="'+cart.item[i]+'"></label></td><td><button class="delete" data-art="'+cart.item[i]+'"></button></td>');
 				}
+			cartHasItems = 1;
 			document.getElementById('cart_modal').style.display = "block";
 		};
 	}
 	$(document).on('click','table .delete',function(){
-		var element = $(this).getAttribute('data-art');
 		$(this).parent().parent().remove();
 		for (i=0;i<cart.name.length;i++){
 			if (cart.item[i] == $(this)[0].getAttribute('data-art')){
 				cart.item.splice(i,1);
 				cart.name.splice(i,1);
-				cart.count.splice(i,1);
+				cart.cost.splice(i,1);
 				cart.col.splice(i,1);
+				cart.i = cart.i-1;
 				fullCost();
 			}
 		}
@@ -95,7 +97,7 @@ $(document).ready(function(){
 		if ($('table label.editing').length == 0){
 			$(this).addClass('editing');
 			$(this).removeClass('confirmed');
-			for (i=0;i<=$('table .col input').length-1;i++){
+			for (i=0;i<$('table .col input').length;i++){
 				if ($('table .col input')[i].getAttribute('data-art') == this.getAttribute('for')){
 					$('table .col input')[i].removeAttribute('disabled');
 				};
@@ -116,10 +118,13 @@ $(document).ready(function(){
 				$('table .cost')[i].innerText = Math.floor(cart.col[i]*cart.cost[i]) + 'р.';
 			}
 		}
+		fullCost();
 	})
 
 	$('.back-catalog').click(function(){
 		document.getElementById('cart_modal').style.display = "none";
+		$('.cart_items').remove();
+		$('.modal .items').append('<table class="cart_items"</table>');
 	})
 
 	$('.do-offer').click(function(){
@@ -134,7 +139,27 @@ $(document).ready(function(){
 		document.getElementById('do_offer_modal').style.display = "none";
 	})
 	$(document).on('click','.add_cart',function(){
-		addCart(this.getAttribute('data-art'),this.getAttribute('data-name'),this.getAttribute('data-cost'),this.nextElementSibling.value);
+		if (this.nextElementSibling.value !== '0'){
+			var i = 0;
+			matchCart = 0;
+			while (i<=cart.name.length){
+				if (this.getAttribute('data-name') == cart.name[i]){
+					console.log('match')
+					matchCart = 1;
+					cart.col[i] = this.nextElementSibling.value;
+					i = cart.name.length;
+				}
+				i++;
+			};
+			if (matchCart == 0){
+				console.log('adding')
+				addCart(this.getAttribute('data-art'),this.getAttribute('data-name'),this.getAttribute('data-cost'),this.nextElementSibling.value);
+			}
+		}
+		else{
+			alert('необходимо указать количество')
+		}
+		
 	});
 
 	$(document).on('click','.catalog label',function(){
