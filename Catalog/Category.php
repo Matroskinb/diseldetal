@@ -1,7 +1,7 @@
 <?php
 
 $db=mysql_connect('localhost','u349367176_user','123321');
-$db='asd';
+
 if(!$db){die("Cant connect to phpMyAdmin");}
 if(!mysql_select_db('u349367176_dizel',$db)) die('Cannot connect to datebase');
 
